@@ -1,0 +1,2 @@
+# Unity3D_WindowPositionController
+Unity3D Windows Standalone Player に、実行ウィンドウの位置および最前面表示の可否を設定するような、コマンドラインオプションを追加します。
