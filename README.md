@@ -25,6 +25,7 @@ git submodule add -b submodule https://github.com/XJINE/Unity_WindowPositionMana
 
 ## Limitation
 
+- Windows only.
 - Window must be popupwindow or windowed mode.
 - Window must be active while loading scene(script).
     - If you activate the another window while scene load,
