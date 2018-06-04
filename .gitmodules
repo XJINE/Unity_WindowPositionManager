@@ -1,0 +1,8 @@
+[submodule "Assets/Packages/CommandLineArgs"]
+	path = Assets/Packages/CommandLineArgs
+	url = https://github.com/XJINE/Unity_CommandLineArgs.git
+	branch = submodule
+[submodule "Assets/Packages/SingletonMonoBehaviour"]
+	path = Assets/Packages/SingletonMonoBehaviour
+	url = https://github.com/XJINE/Unity_SingletonMonoBehaviour.git
+	branch = submodule
