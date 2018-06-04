@@ -7,7 +7,7 @@ Add some command line arguments to set window position.
 If you want to import this repository as submodule in your project.
 
 ```
-git submodule add -b submodule https://github.com/XJINE/Unity_WindowPositionManager.git Assets/Packages/WindowPositionManager
+git submodule add -b submodule https://github.com/XJINE/Unity_WindowPositionManager.git Assets/Packages/WindowPositionManager && git submodule add -b submodule https://github.com/XJINE/Unity_CommandLineArgs.git Assets/Packages/CommandLineArgs && git submodule add -b submodule https://github.com/XJINE/Unity_SingletonMonoBehaviour.git Assets/Packages/SingletonMonoBehaviour
 ```
 
 ### Dependencies
