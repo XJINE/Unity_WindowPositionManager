@@ -33,10 +33,12 @@ public class WindowPositionManager : SingletonMonoBehaviour<WindowPositionManage
 
     protected override void Awake()
     {
+        #pragma warning disable 0162
+
         base.Awake();
 
         #if UNITY_EDITOR
-        
+
         return;
 
         #endif
@@ -46,6 +48,8 @@ public class WindowPositionManager : SingletonMonoBehaviour<WindowPositionManage
         bool topmost         = CommandLineArgs.HasParameter  (CommandTopmost);
 
         SetWindowPosition(screenPositionX, screenPositionY, topmost);
+
+        #pragma warning restore 0162
     }
 
     protected virtual void SetWindowPosition(int x, int y, bool topmost)
