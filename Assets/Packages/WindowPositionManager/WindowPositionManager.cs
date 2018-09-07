@@ -6,7 +6,7 @@ public class WindowPositionManager : SingletonMonoBehaviour<WindowPositionManage
 {
     #region DllImport
 
-    // # Reference
+    // # NOTE:
     // https://msdn.microsoft.com/ja-jp/library/cc411206.aspx
 
     [DllImport("user32.dll")]
