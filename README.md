@@ -2,6 +2,8 @@
 
 Add some command line arguments to set window position.
 
+![](https://github.com/XJINE/Unity3D_WindowPositionManager/blob/master/screenshot0.gif)
+
 ## Import to Your Project
 
 You can import this asset from UnityPackage.
@@ -28,7 +30,7 @@ You have to import following assets to use this asset.
 ### Sample
 
 ```
-WindowPositionManager.exe -popupwindow -screen-width 640 -screen-height 480 -screen-position-x 200 -screen-position-y 200 -topmost
+Sample.exe -popupwindow -screen-width 640 -screen-height 480 -screen-position-x 200 -screen-position-y 200 -topmost
 ```
 
 ## Limitation
@@ -37,7 +39,3 @@ WindowPositionManager.exe -popupwindow -screen-width 640 -screen-height 480 -scr
 - Window must be popupwindow or windowed mode.
 - Window must be active while loading scene(script).
     - If you activate the another window while scene load, these settings works wrong.
-
-## Screenshot
-
-![](https://github.com/XJINE/Unity3D_WindowPositionManager/blob/master/screenshot0.gif)
