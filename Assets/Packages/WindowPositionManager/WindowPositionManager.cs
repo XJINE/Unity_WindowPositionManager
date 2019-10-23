@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using UnityEngine;
 
 public class WindowPositionManager : SingletonMonoBehaviour<WindowPositionManager>
 {
@@ -20,6 +19,8 @@ public class WindowPositionManager : SingletonMonoBehaviour<WindowPositionManage
                                             int cx,
                                             int cy,
                                             int uFlags);
+
+    private const int SWP_NOSIZE = 0x0001;
 
     #endregion DllImport
 
@@ -57,12 +58,17 @@ public class WindowPositionManager : SingletonMonoBehaviour<WindowPositionManage
         // NOTE:
         // Window will be set topmost when the value of "topmost" is -1.
 
+        // CAUTION:
+        // Need to set SWP_NOSIZE option.
+        // Set Screen.width/height makes trouble
+        // which resizes the window smaller than the previous size.
+
         SetWindowPos(GetActiveWindow(),
                      topmost ? -1 : 0,
                      x,
                      y,
-                     Screen.width,
-                     Screen.height,
-                     0);
+                     0,
+                     0,
+                     SWP_NOSIZE);
     }
 }
