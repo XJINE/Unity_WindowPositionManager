@@ -1,0 +1,19 @@
+{
+    "name": "WindowPositionManager",
+    "rootNamespace": "",
+    "references": [
+        "GUID:442bce2f712c0e241a74c4fe0766e0f8",
+        "GUID:43dd3f0c7ecda0f40b03f362c16f8cce"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [
+        "Editor"
+    ],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

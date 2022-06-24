@@ -2,20 +2,24 @@
 
 This script sets window position and the topmost option.
 
-![](https://github.com/XJINE/Unity3D_WindowPositionManager/blob/master/screenshot0.gif)
+![](https://github.com/XJINE/Unity_WindowPositionManager/blob/main/screenshot0.gif)
 
-## Import to Your Project
+## Importing
 
-You can import this asset from UnityPackage.
+You can use Package Manager or import it directly.
 
-- [WindowPositionManager.unitypackage](https://github.com/XJINE/Unity_WindowPositionManager/blob/master/WindowPositionManager.unitypackage)
+```
+https://github.com/XJINE/Unity_WindowPositionManager.git?path=Assets/Packages/WindowPositionManager
+```
+
+NOTE: Because of the limitation of UnityPackageManager, it needs to install dependencies manually.
 
 ### Dependencies
 
-You have to import following assets to use this asset.
+This project use following resources.
 
-- [Unity_SingletonMonoBehaviour](https://github.com/XJINE/Unity_SingletonMonoBehaviour)
-- [Unity_CommandLineArgs](https://github.com/XJINE/Unity_CommandLineArgs)
+- https://github.com/XJINE/Unity_SingletonMonoBehaviour
+- https://github.com/XJINE/Unity_CommandLineArgs
 
 ## How to Use
 

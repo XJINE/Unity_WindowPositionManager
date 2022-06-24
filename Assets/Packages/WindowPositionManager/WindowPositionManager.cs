@@ -2,21 +2,21 @@
 using System.Runtime.InteropServices;
 using UnityEngine;
 
-public class WindowPositionManager : SingletonMonoBehaviour<WindowPositionManager>
+public sealed class WindowPositionManager : SingletonMonoBehaviour<WindowPositionManager>
 {
     #region DllImport
 
     [DllImport("user32.dll", EntryPoint = "SetWindowPos")]
-    protected static extern bool SetWindowPos(IntPtr hWnd,
-                                              int    hWndInsertAfter,
-                                              int    x,
-                                              int    y,
-                                              int    cx,
-                                              int    cy,
-                                              int    uFlags);
+    private static extern bool SetWindowPos(IntPtr hWnd,
+                                            int    hWndInsertAfter,
+                                            int    x,
+                                            int    y,
+                                            int    cx,
+                                            int    cy,
+                                            int    uFlags);
 
     [DllImport("user32.dll")]
-    protected static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+    private static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
 
     #endregion DllImport
 
@@ -26,12 +26,12 @@ public class WindowPositionManager : SingletonMonoBehaviour<WindowPositionManage
     public static readonly string CommandScreenPositionY = "-screen-position-y";
     public static readonly string CommandTopmost         = "-topmost";
 
-    public    int    screenPositionX;
-    public    int    screenPositionY;
-    public    bool   topmost;
-    public    float  intervalTime;
-    protected float  intervalTimePrev;
-    protected IntPtr windowHandle;
+    public  int    screenPositionX;
+    public  int    screenPositionY;
+    public  bool   topmost;
+    public  float  intervalTime;
+    private float  _intervalTimePrev;
+    private IntPtr _windowHandle;
 
     #endregion Field
 
@@ -45,39 +45,39 @@ public class WindowPositionManager : SingletonMonoBehaviour<WindowPositionManage
 
         #if UNITY_EDITOR
 
-        Debug.Log("WindowPositionMangaer do nothing in editor, and the instance will be Destroyed.");
+        Debug.Log("WindowPositionManager do nothing in editor, and the instance will be Destroyed.");
 
         return;
 
         #endif
 
-        windowHandle = FindWindow(null, Application.productName);
+        _windowHandle = FindWindow(null, Application.productName);
 
-        if (CommandLineArgs.GetValueAsInt(CommandScreenPositionX, out int x))
+        if (CommandLineArgs.GetValueAsInt(CommandScreenPositionX, out var x))
         {
-            this.screenPositionX = x;
+            screenPositionX = x;
         }
 
-        if (CommandLineArgs.GetValueAsInt(CommandScreenPositionY, out int y))
+        if (CommandLineArgs.GetValueAsInt(CommandScreenPositionY, out var y))
         {
-            this.screenPositionY = y;
+            screenPositionY = y;
         }
 
-        this.topmost = this.topmost || CommandLineArgs.HasParameter(CommandTopmost);
+        topmost = topmost || CommandLineArgs.HasParameter(CommandTopmost);
 
-        if (CommandLineArgs.GetValueAsFloat(CommandTopmost, out float time))
+        if (CommandLineArgs.GetValueAsFloat(CommandTopmost, out var time))
         {
-            this.intervalTime = time;
+            intervalTime = time;
         }
 
-        if (this.topmost && this.intervalTime >= 0)
+        if (topmost && intervalTime >= 0)
         {
-            SetWindowPosition(this.windowHandle, this.screenPositionX, this.screenPositionY, this.topmost);
+            SetWindowPosition(_windowHandle, screenPositionX, screenPositionY, topmost);
 
             // NOTE:
             // Once ver.
 
-            if (this.intervalTime == 0)
+            if (intervalTime == 0)
             {
                 Destroy(this);
             }
@@ -86,24 +86,22 @@ public class WindowPositionManager : SingletonMonoBehaviour<WindowPositionManage
         #pragma warning restore 0162
     }
 
-    protected virtual void FixedUpdate()
+    private void FixedUpdate()
     {
-        if (!this.topmost)
+        if (!topmost)
         {
             return;
         }
 
-        if (this.intervalTime > 0 && Time.timeSinceLevelLoad - this.intervalTimePrev >= this.intervalTime)
+        if (intervalTime > 0 && Time.timeSinceLevelLoad - _intervalTimePrev >= intervalTime)
         {
-            this.intervalTimePrev = Time.timeSinceLevelLoad;
+            _intervalTimePrev = Time.timeSinceLevelLoad;
 
-            SetWindowPosition(this.windowHandle, this.screenPositionX, this.screenPositionY, this.topmost);
-
-            return;
+            SetWindowPosition(_windowHandle, screenPositionX, screenPositionY, topmost);
         }
     }
 
-    protected static void SetWindowPosition(IntPtr windowHandle, int x, int y, bool topmost)
+    private static void SetWindowPosition(IntPtr windowHandle, int x, int y, bool topmost)
     {
         // NOTE:
         // Window will be set topmost when the value of "topmost" is -1.
