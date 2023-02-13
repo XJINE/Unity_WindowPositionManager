@@ -12,8 +12,6 @@ You can use Package Manager or import it directly.
 https://github.com/XJINE/Unity_WindowPositionManager.git?path=Assets/Packages/WindowPositionManager
 ```
 
-NOTE: Because of the limitation of UnityPackageManager, it needs to install dependencies manually.
-
 ### Dependencies
 
 This project use following resources.
